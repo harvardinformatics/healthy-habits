@@ -16,7 +16,7 @@ This workshop assumes you have some basic knowledge of the Linux command line. I
 
 A majority of this workshop will take place on the [FASRC cluster](https://www.rc.fas.harvard.edu/cluster/), so you will need a FASRC account to be able to follow along. If you do not have one, please use the link below to request one. 
 
-[How to: Request FASRC account](https://docs.rc.fas.harvard.edu/kb/how-do-i-get-a-research-computing-account/){ .md-button .md-button--primary .centered }
+[How to: Request FASRC account :octicons-link-external-24:](https://docs.rc.fas.harvard.edu/kb/how-do-i-get-a-research-computing-account/){ .md-button .md-button--primary .centered }
 
 !!! warning "Confirm you can login to the cluster before class!"
 
@@ -26,13 +26,13 @@ A majority of this workshop will take place on the [FASRC cluster](https://www.r
 
 We'll be using the version control program [git](https://git-scm.com/) and the hosting platform [GitHub](https://github.com) for some of the exercises. If you don't have a GitHub account, please use the link below to create one. If you already have an account, please make sure you are able to login before the workshop starts.
 
-[GitHub](https://github.com){ .md-button .md-button--primary .centered }
+[GitHub :octicons-link-external-24:](https://github.com){ .md-button .md-button--primary .centered }
 
 ### 4. RStudio (recommended for Day 4)
 
 On the last day, we'll be re-creating a figure in a paper using R and Rstudio. We'll do this locally on your computer (rather than on the cluster), so if you don't have R and RStudio installed, please use the links below to download and install them. 
 
-[Download R and RStudio](https://posit.co/download/rstudio-desktop/){ .md-button .md-button--primary .centered }
+[Download R and RStudio :octicons-link-external-24:](https://posit.co/download/rstudio-desktop/){ .md-button .md-button--primary .centered }
 
 ---
 
@@ -49,7 +49,7 @@ Wednesday March 13th, 9:30 am - 12:30 pm, Location: [Northwest Building](https:/
 * Best practices for file organization
 * Downloading and tansferring data
 
-[Lecture Material](healthy_habits_day1.md){ .md-button } & [Slides](healthy_habits_day1_ppt.pdf){ .md-button }
+[Lecture Material :material-arrow-right:](healthy_habits_day1.md){ .md-button } & [Slides :octicons-download-24:](healthy_habits_day1_ppt.pdf){ .md-button }
 
 ### BONUS Day 1: Optimizing and customizing your data analysis tools
 
@@ -61,7 +61,7 @@ Thursday March 14th, 9:30 am - 12:30 pm, Location: [Biolabs](https://maps.app.go
 * Shell profiles
 * [Terminal multiplexers](https://en.wikipedia.org/wiki/Terminal_multiplexer) (e.g. [screen](https://www.gnu.org/software/screen/), [tmux](https://github.com/tmux/tmux/wiki))
 
-This was a live demonstration and Q&A session, so there are no lecture materials available.
+**This was a live demonstration and Q&A session, so there are no lecture materials available.**
 
 ### Day 2: Installing and Managing Software
 
@@ -72,7 +72,7 @@ Wednesday March 20th, 9:30 am - 12:30 pm, Location: [Northwest Building](https:/
 * Package managers (e.g. [pip](https://pypi.org/project/pip/), [CRAN](https://cran.r-project.org/), [conda](https://docs.conda.io/en/latest/))
 * Creating and managing software environments with [mamba](https://mamba.readthedocs.io/en/latest/index.html)
 
-[Lecture Material](healthy_habits_day2.md){ .md-button }
+[Lecture Material :material-arrow-right:](healthy_habits_day2.md){ .md-button }
 
 ### Day 3: Version control with [git](https://git-scm.com/) and [GitHub](https://github.com/)
 
@@ -83,7 +83,7 @@ Thursday March 21st, 9:30 am - 12:30 pm, Location: [Biolabs](https://maps.app.go
 * Managing your project history with git
 * Collaborating on GitHub
 
-[Lecture Material](healthy_habits_day3.md){ .md-button } & [Slides](healthy_habits_day3_ppt.pdf){ .md-button }
+[Lecture Material :material-arrow-right:](healthy_habits_day3.md){ .md-button } & [Slides :octicons-download-24:](healthy_habits_day3_ppt.pdf){ .md-button }
 
 ### Day 4: Running scripts on the Cannon cluster
 
@@ -94,7 +94,7 @@ Wednesday March 27th, 9:30 am - 12:30 pm, Location: [Northwest Building](https:/
 * Scaling up your analyses with the cluster
 * Submitting jobs to SLURM
 
-[Lecture Material](healthy_habits_day4.md){ .md-button }
+[Lecture Material :material-arrow-right:](healthy_habits_day4.md){ .md-button }
 
 ### BONUS Day 2: AI assisted coding and debugging
 
@@ -104,4 +104,4 @@ Thursday March 28th, 9:30 am - 12:30 pm, Location: [Biolabs](https://maps.app.go
 * Writing tests for your code
 * Debugging skills
 
-This was a live demonstration and Q&A session, so there are no lecture materials available.
+**This was a live demonstration and Q&A session, so there are no lecture materials available.**
