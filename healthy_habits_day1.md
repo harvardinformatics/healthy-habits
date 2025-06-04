@@ -82,8 +82,8 @@ What does interoperability mean?
 
 * Planning for how you're going to store data throughout the life cycle
 * Life cycle: 
-    * https://datamanagement.hms.harvard.edu/
-    * https://hlrdm.library.harvard.edu/
+    * [https://datamanagement.hms.harvard.edu/ :octicons-link-external-24:](https://datamanagement.hms.harvard.edu/){:target="_blank"}
+    * [https://hlrdm.library.harvard.edu/ :octicons-link-external-24:](https://hlrdm.library.harvard.edu/){:target="_blank"}
 * Continuum of activties, not "one and done"
 * No one entity is responsible for managing data, so you need input from 
     * Library: Harvard library research data services, archives
@@ -118,6 +118,7 @@ Keeping all these in mind, let's take a look at how open science is reflected in
 > **ACTIVITY: Browse the paper and its github repo and look at different aspects of how open sience is reflected. What do you see? What more do you wish to see?**
 
 Here are some things I see
+
 * The paper is open access
 * There is a doi for the paper (digital object identifier)
 * The paper has a creative commons license
@@ -129,6 +130,7 @@ Here are some things I see
 * Link to request protocol
 
 Here's what I see in the github repo
+
 * Detailed README
 * Version numbers for software needed
 * Exact directions to reproduce everything
@@ -227,7 +229,7 @@ Other tips for good directory organization include:
 
 > **ACTIVITY: Put up example files and have students suggest how it might be reorganized**
 
-I've made a folder with a bunch of dummy files. Let's see if we can go through and reorganize it based on what we've learned today. Call out things you see that may be problematic. Feel free to be as pedantic or as critical as you want to be. (This folder activity inspired by the excelent [R for Data Science](https://r4ds.hadley.nz/) book chapter 6)
+I've made a folder with a bunch of dummy files. Let's see if we can go through and reorganize it based on what we've learned today. Call out things you see that may be problematic. Feel free to be as pedantic or as critical as you want to be. (This folder activity inspired by the excelent [R for Data Science :octicons-link-external-24:](https://r4ds.hadley.nz/){:target="_blank"} book chapter 6)
 
 ## Project directories on the Cluster
 
@@ -258,9 +260,9 @@ Every file and folder on the cluster has a set of permissions that determine who
 
 ## Transferring files
 
-Now that we have our project directory set up, let's go over some ways we can transfer files between local computers and the cluster. The first way is to use a non-command line application to transfer files. For a GUI/app-based solution, there's FileZilla. It's a File Transfer Protocol (FTP) application that can connect to remote servers. You can follow the steps on the RC documentation site to learn how to use FileZilla. [link](https://docs.rc.fas.harvard.edu/kb/sftp-file-transfer/)
+Now that we have our project directory set up, let's go over some ways we can transfer files between local computers and the cluster. The first way is to use a non-command line application to transfer files. For a GUI/app-based solution, there's FileZilla. It's a File Transfer Protocol (FTP) application that can connect to remote servers. You can follow the [steps on the RC documentation site to learn how to use FileZilla :octicons-link-external-24:](https://docs.rc.fas.harvard.edu/kb/sftp-file-transfer/).{:target="_blank"}
 
-Another way is to use command line tools to transfer. You can use `scp` to copy files from the cluster to your local computer and vice versa. You can also use `rsync` to do the same thing, but it's a little more powerful. `rsync` can be faster because it only sends data that's been updated while `scp` sends the whole file every time. There's an [rsync](https://docs.rc.fas.harvard.edu/kb/rsync/) and an [scp](https://docs.rc.fas.harvard.edu/kb/copying-data-to-and-from-cluster-using-scp/) guide on the RC documentation site if you want to learn more. 
+Another way is to use command line tools to transfer. You can use `scp` to copy files from the cluster to your local computer and vice versa. You can also use `rsync` to do the same thing, but it's a little more powerful. `rsync` can be faster because it only sends data that's been updated while `scp` sends the whole file every time. There's an [rsync :octicons-link-external-24:](https://docs.rc.fas.harvard.edu/kb/rsync/){:target="_blank"} and an [scp :octicons-link-external-24:](https://docs.rc.fas.harvard.edu/kb/copying-data-to-and-from-cluster-using-scp/){:target="_blank"} guide on the RC documentation site if you want to learn more. 
 
 Let's put that into action and have everyone choose a method they prefer to transfer files. Make the same project directory on your personal computer, add a readme file to it, and then transfer that file from your computer to the cluster in whichever way you prefer. Also transfer everything except the raw data folder and the software folder to your computer. (We'll learn a better way to transfer these files on day 3 with GitHub)
 
@@ -270,7 +272,7 @@ Let's put that into action and have everyone choose a method they prefer to tran
 
 Our last topic for today is how to make backups and what to save. We kind of touched on this during the data management life cycle part, and now we're going to be more specific. We all know file backups are important, but it's not always clear what needs to be backed up and what doesn't. The general rule is that if you can regenerate the file easily, you don't need to back it up. For example, if you have a script that generates a figure, you don't need to back up the figure, you just need to back up the script. If you have a raw data file that you've processed into a different file, you don't need to back up the processed file, you just need to back up the raw data file and the script. Of course, if it look a really long time to generate the processed file, it might be worth backing up. There's a lot of options for backing things up, depending on file type, what stage the research is in, and the sensitivity of the file. 
 
-Let's start with data. One place is a public repository. [PlosOne](https://journals.plos.org/plosone/s/recommended-repositories) has a handy list of common repositories to report your data. These include Figshare, NCBI, and EBI. Oftentimes, people deposit their sequencing data in these places as a requirement for publication in a journal or due to a grant/funding requirement. But nobody's preventing you from putting your data there as soon as you get it! You can put an embargo on the data as you work on it and then only click the publish button when you're ready to submit. Doing so saves some hassle when you've already got your hands full preparing the manuscript. 
+Let's start with data. One place is a public repository. [PlosOne :octicons-link-external-24:](https://journals.plos.org/plosone/s/recommended-repositories){:target="_blank"} has a handy list of common repositories to report your data. These include Figshare, NCBI, and EBI. Oftentimes, people deposit their sequencing data in these places as a requirement for publication in a journal or due to a grant/funding requirement. But nobody's preventing you from putting your data there as soon as you get it! You can put an embargo on the data as you work on it and then only click the publish button when you're ready to submit. Doing so saves some hassle when you've already got your hands full preparing the manuscript. 
 
 More locally, you also have options. If you want the lab to ultimately own your files, your lab may have a network attached storage (NAS) that you can put your files on. This is a big hard drive that's connected to the network and everyone in the lab can access it. You can also use external HDDs to back up your files, just make sure those are stored in a safe place and checked every once in a while to prevent data loss. 
 

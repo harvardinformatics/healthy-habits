@@ -236,7 +236,7 @@ This will take you back to the normal shell.
 
 Docker is the most popular container system, and there are many more Docker images available than Singularity images. However, Docker images cannot be run on the Cannon cluster. But we can convert Docker images to Singularity images. This is a bit more complicated than just running a Singularity image, but it's not too difficult.
 
-1. Create an account on [the Singularity website](https://cloud.sylabs.io/) and login.
+1. Create an account on [the Singularity website :octicons-link-external-24:](https://cloud.sylabs.io/){:target="_blank"} and login.
 2. Generate an access token and copy it, or if you still have an active token just copy it.
 3. On the cluster, run `singularity remote login` and paste the access token when prompted.
 4. Run `singularity build <name of new singularity image file> docker://<docker image name>`. This will download the Docker image and convert it to a Singularity image.
@@ -261,7 +261,7 @@ The term `mamba` is used only to refer to the command line program for installin
 
 ## Installing mamba
 
-Today we'll be installing `mamba` using [their recommended method of miniforge](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html), which is just the program pre-configured for a certain *channel*, `conda-forge`.
+Today we'll be installing `mamba` using [their recommended method of miniforge :octicons-link-external-24:](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html){:target="_blank"}, which is just the program pre-configured for a certain *channel*, `conda-forge`.
 
 > 1. Type the following into your terminal:
 
@@ -315,9 +315,9 @@ NOTE: It is best practice to never install any software into the `base` environm
 
 ## bioconda and setting up your channels
 
-[bioconda](https://bioconda.github.io/) is a *channel* on the `conda` repository that contains a lot of bioinformatics software. It, along with the `conda-forge` channel, are likely to be the channels you'll use almost exclusively.
+[bioconda :octicons-link-external-24:](https://bioconda.github.io/){:target="_blank"} is a *channel* on the `conda` repository that contains a lot of bioinformatics software. It, along with the `conda-forge` channel, are likely to be the channels you'll use almost exclusively.
 
-> Navigate to the bioconda website: https://bioconda.github.io/
+> Navigate to the bioconda website: [bioconda :octicons-link-external-24:](https://bioconda.github.io/){:target="_blank"} 
 
 This website contains a lot of information about bioconda, including a list of all the software that is available on bioconda. Is there anything you notice on the front page that may be necessary for us?
 
@@ -336,7 +336,7 @@ This will add the `bioconda` and `conda-forge` channels to your conda configurat
 
 ## Creating an environment
 
-Let's get back to our goal for this workshop, which is to re-analyze some data in a paper ([Favate et al. 2022](https://doi.org/10.7554/eLife.81979)). 
+Let's get back to our goal for this workshop, which is to re-analyze some data in a paper ([Favate et al. 2022 :octicons-link-external-24:](https://doi.org/10.7554/eLife.81979){:target="_blank"} ). 
 
 We've already downloaded the raw data and organized it into our project folder.
 
@@ -425,7 +425,7 @@ cutadapt -h
 
 Wait? Why are we still getting this error? Well, we may have created an environment that we intend to run `cutadapt` in, but we haven't actually installed `cutadapt` into the environment yet.
 
-To do that, let's go to the [bioconda website](https://bioconda.github.io/) and search for `cutadapt`.
+To do that, let's go to the [bioconda website :octicons-link-external-24:](https://bioconda.github.io/){:target="_blank"}  and search for `cutadapt`.
 
 > 1. Search for `cutadapt` on the bioconda website.
 > 2. Follow the instructions to install `cutadapt` into your `cutadpt-env` environment.
@@ -773,7 +773,7 @@ You may have also noticed that `mamba` installed the software from the `bioconda
 
 To do this, you would use the syntax `mamba install -c <channel name> <program name>`. For example, if you wanted to install a program called `example` from a channel called `example-channel`, you would run `mamba install -c example-channel example`.
 
-You can search for software from any channel from [Anaconda.org](https://anaconda.org/).
+You can search for software from any channel from [Anaconda.org :octicons-link-external-24:](https://anaconda.org/){:target="_blank"}.
 
 ## BONUS: Installing software as you create an environment
 

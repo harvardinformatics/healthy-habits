@@ -72,7 +72,7 @@ The above image illustrates the relationship between a forked repo, the original
 
 Let's practice all these concepts together on a demo repo.
 
-> **ACTIVITY GitHub demo repo [link](https://github.com/harvardinformatics/github-intro)**
+> **ACTIVITY: [GitHub demo repo :octicons-link-external-24:](https://github.com/harvardinformatics/github-intro){:target="_blank"}**
 
 ## Vocab part 1
 
@@ -176,7 +176,7 @@ branch 'main' set up to track 'origin/main'.
 ✓ Pushed commits to https://github.com/microlei/test-repo.git
 ```
 
-If you want another way to add a remote from an existing repo, you can follow the instructions on the [GitHub help pages](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git). 
+If you want another way to add a remote from an existing repo, you can follow the instructions on the [GitHub help pages :octicons-link-external-24:](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git){:target="_blank"}. 
 
 # Navigating your git history
 
@@ -250,7 +250,7 @@ When you use the `git checkout` command, you can move the HEAD to a different co
     </figure>
 </div>
 
-The command `git revert` is used to undo a single commit or a series of commits. It creates a new commit that undoes the changes made in the commit(s) you specify. This is useful if you've made some helpful commits since then and just want to undo changes from a specific time. Git revert is the way to go if you want to undo a commit that has already been pushed to the remote because it preserves the history. When you do a `git revert`, you will make a new commit that undoes the changes from the commit you specify. [This](https://stackoverflow.com/a/46275419) answer from stackoverflow explains it with a simple example, quoted below: 
+The command `git revert` is used to undo a single commit or a series of commits. It creates a new commit that undoes the changes made in the commit(s) you specify. This is useful if you've made some helpful commits since then and just want to undo changes from a specific time. Git revert is the way to go if you want to undo a commit that has already been pushed to the remote because it preserves the history. When you do a `git revert`, you will make a new commit that undoes the changes from the commit you specify. [This answer from StackOverflow :octicons-link-external-24:](https://stackoverflow.com/a/46275419){:target="_blank"} explains it with a simple example, quoted below: 
 
 Let's say you have some initial commit of some file - let's call it commit #1 for simplicity - and the file looks like this:
 ```
@@ -295,7 +295,7 @@ The command `git reset` is used to undo multiple commits. It will reset your wor
 * `--mixed` will changed the staged area to match the commit you specify, but will not change the working directory (this is the default behavior)
 * `--hard` will change the staged are and your working directory to match the commit you specify. 
 
-For an in depth explanation of git reset, see this documentation from [git-scm.com](https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified).
+For an in depth explanation of git reset, see this documentation from [git-scm.com :octicons-link-external-24:](https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified){:target="_blank"}.
 
 When you do a `git reset --hard`, you will need to force push `git push --force` to the remote to update the remote's git history. Typically, you want to git reset when you haven't yet pushed the commits you want to reset.
 
@@ -326,11 +326,11 @@ Use `git log` to see the history of your project. Use the arrow keys to navigate
 
 ## Useful resources
 
-[Learn git branching](https://learngitbranching.js.org/) is a visually interactive way to learn git commands. You can use it as a sandbox or follow the tutorials.
+[Learn git branching :octicons-link-external-24:](https://learngitbranching.js.org/){:target="_blank"} is a visually interactive way to learn git commands. You can use it as a sandbox or follow the tutorials.
 
-[Atlassian git tutorials](https://www.atlassian.com/git/tutorials/) have detailed explanations in simple language accompanied by visual diagrams.
+[Atlassian git tutorials :octicons-link-external-24:](https://www.atlassian.com/git/tutorials/){:target="_blank"} have detailed explanations in simple language accompanied by visual diagrams.
 
-[Oh shit git](https://ohshitgit.com/) is a good quick reference for panic-finding a git solution to common situations.
+[Oh shit git :octicons-link-external-24:](https://ohshitgit.com/){:target="_blank"} is a good quick reference for panic-finding a git solution to common situations.
 
 
 ## Undoing difficult git mistakes
@@ -339,9 +339,9 @@ Use `git log` to see the history of your project. Use the arrow keys to navigate
 
 If you accidentally commit a large file to your local git repo and try to push it to your remote, you will find that you are not allowed to push. You then remove the file from your working directory and make a new commit documenting the deletion of the file, but you're still not allowed to push? Why? This is because your staging area (aka index, aka .git folder) still has a record of the time you commited that file. It's very hard to scrub your git history. Similarly, if you commit a password or access token, that commit will always display your sensitive information even if you overwrite the file in later commits. So how do we fix this?
 
-Git recommends using the tool [git filter-repo](https://github.com/newren/git-filter-repo) to rewrite your commit history. git filter-repo is a very lightweight but powerful tool with many features, but I will only cover common use cases here.
+Git recommends using the tool [git filter-repo :octicons-link-external-24:](https://github.com/newren/git-filter-repo){:target="_blank"} to rewrite your commit history. git filter-repo is a very lightweight but powerful tool with many features, but I will only cover common use cases here.
 
-First, install git filter-repo by downloading the [single python file](https://github.com/newren/git-filter-repo/blob/main/git-filter-repo) and putting it in your $PATH. Then running `chmod u+x git-filter-repo` to make it executable. You can then run the tool by navigating to your repo and entering `git filter-repo`. 
+First, install git filter-repo by downloading the [single python file :octicons-link-external-24:](https://github.com/newren/git-filter-repo/blob/main/git-filter-repo){:target="_blank"} and putting it in your $PATH. Then running `chmod u+x git-filter-repo` to make it executable. You can then run the tool by navigating to your repo and entering `git filter-repo`. 
 
 To remove files larger than some size (K, M, and G for kilobytes, megabytes, and gigabytes, respectively):
 
@@ -361,9 +361,9 @@ To remove specific files from all directories, such as junk files created by you
 git filter-repo --invert-paths --path '.DS_Store' --use-base-name
 ```
 
-For more examples, see the [documentation](https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html).
+For more examples, see the [documentation :octicons-link-external-24:](https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html){:target="_blank"}.
 
-### starting over from remote
+### Starting over from remote
 
 If you've made a mess of your local git repo and you just want to start over from the last time you pushed to the remote, you can use `git reset --hard origin/main`. Origin is the name of the remote and main is the name of the branch on the remote you're resetting to. This will change your working directory and staging area to match the remote's. 
 
