@@ -1,6 +1,15 @@
 ---
 title: Healthy Habits for Data Science
+authors:
+    - Adam Freedman
+    - Danielle Khost
+    - Lei Ma
+    - Tim Sackton    
+    - Gregg Thomas
+author_header: Workshop Developers
 ---
+
+{{ author_row(page) }}
 
 This workshop aims to teach students how to be more effective at working on their projects using reproducible habits. We learn how to organize projects on the local machine as well as the Cannon cluster, how to manage software environments, how to use git and GitHub to track code changes, and how to write and scale scripts on an HPC. 
 
@@ -105,3 +114,5 @@ Thursday March 28th, 9:30 am - 12:30 pm, Location: [Biolabs :octicons-link-exter
 * Debugging skills
 
 **This was a live demonstration and Q&A session, so there are no lecture materials available.**
+
+---
