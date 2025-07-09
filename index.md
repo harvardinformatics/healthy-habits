@@ -1,5 +1,6 @@
 ---
-title: Healthy Habits for Data Science
+title: "[Workshop] Healthy habits for data science"
+description: Multi-day workshop from Harvard FAS Informatics covering best practices for file organization and software management, emphasizing reproducibility.
 authors:
     - Adam Freedman
     - Danielle Khost
@@ -8,6 +9,8 @@ authors:
     - Gregg Thomas
 author_header: Workshop Developers
 ---
+
+# Healthy habits for data science
 
 {{ author_row(page) }}
 
