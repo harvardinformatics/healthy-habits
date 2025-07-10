@@ -1,5 +1,5 @@
 ---
-title: "[Workshop] Healthy habits for data science, day 2"
+title: "[Workshop] Healthy habits for data science 2"
 subtitle: "Day 2: Installing and Managing Software"
 description: "An introduction to managing software, including containers and environments, with an emphasis on conda/mamba."
 date: "March 20, 2024"

@@ -1,5 +1,5 @@
 ---
-title: "[Workshop] Healthy habits for data science, day 3"
+title: "[Workshop] Healthy habits for data science 3"
 subtitle: "Day 3: Version Control with git and GitHub"
 description: "Maintaining project history with version control using git ang github."
 date: "March 21, 2024"

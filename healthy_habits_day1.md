@@ -1,5 +1,5 @@
 ---
-title: "[Workshop] Healthy habits for data science, day 1"
+title: "[Workshop] Healthy habits for data science 1"
 subtitle: "Day 1: Reproducibility and Project Management"
 description: "An introduction to the principles and best practices for file management for reproducible projects"
 date: "March 13, 2024"

@@ -1,5 +1,5 @@
 ---
-title: "[Workshop] Healthy habits for data science, day 4"
+title: "[Workshop] Healthy habits for data science 4"
 subtitle: "Day 4: Running Scripts on the Cluster"
 description: "Reproducible projects with notebooks (jupyter, RMarkdown), and scaling analyses by submitting them to the cluster."
 date: "March 27, 2024"
