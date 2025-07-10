@@ -1,6 +1,7 @@
 ---
-title: "Harvard Informatics Healthy Habits for Data Science Workshop"
+title: "[Workshop] Healthy habits for data science, day 2"
 subtitle: "Day 2: Installing and Managing Software"
+description: "An introduction to managing software, including containers and environments, with an emphasis on conda/mamba."
 date: "March 20, 2024"
 author: "Gregg Thomas"
 output: 
@@ -10,17 +11,9 @@ editor_options:
   chunk_output_type: inline
 ---
 
-<style type="text/css">
-    pre { overflow-x: scroll }
-    pre code { white-space: pre; }
-    /* This makes the output blocks scroll horizontally in HTML renders */
+# Healthy habits for data science, day 2
 
-    .md-sidebar--secondary { order: 0; }
-    .md-sidebar--primary { display: none; }
-    /* This hides the Navigation sidebar and moves the TOC sidebar to the left in HTML renders */
-</style>
-
-## Review of paper and get everyone caught up
+## Review of paper to get everyone caught up
 
 For those of us who may not have been here on day 1, we're going to be working on reproducing a paper that looked at evolution of E. coli transcription over the course of 22 years. We're going to be going through this general workflow which runs from acquiring the raw data to cleaning the data, and then analyzing and finishing with visualization. 
 
@@ -33,7 +26,7 @@ For those of us who may not have been here on day 1, we're going to be working o
 
 However, all ths scripts and some of the intermediate files will be provided for you so you can focus on the project management side and have the data analysis as a backdrop. To that end, to make sure we're on the same page, let's make sure we all have our project directory set up.
 
-# Setup
+## Setup
 
 > 1. Log in to the cluster
 
@@ -68,11 +61,11 @@ cd healthy-habits/
 
 > 7. Create a project directory on your local computer and copy the files over using your preferred method
 
-# Software
+## Software
 
 This sets us up with the *data* we need for our project. However, to do any sort of analysis, we'll need to use *software*. Software is any computer program that performs a function. A lot of software comes with any given computer, and a lot of it is necessary for the computer to run (e.g. the Operating System). For the most part though, any data analysis in any particular domain will require specialized software. For example, to analyze DNA sequences, you might use software like `samtools` or `bedtools`, which are not typically installed on a computer by default. That means a big chunk of analysis is reading about the available softare, deciding on what you need for your analysis, and then installing it.
 
-## Terminology
+### Terminology
 
 Before we get into the specifics of installing software, let's go over some terminology. There are many different terms that are used to describe software, and it can be confusing. Here are some common ones:
 
@@ -87,13 +80,13 @@ Before we get into the specifics of installing software, let's go over some term
 
 You'll notice that a lot of these definitions are very similar, and as such the terms are often used interchangeably. For example, you might hear someone refer to a program as a piece of software, or a script as a program. This is fine, but it can be confusing, so it's helpful to know the different terms.
 
-# Dependencies
+## Dependencies
 
 Software often bundles a lot of programs and libraries together. For example, the `samtools` software is actually a collection of programs that all work together to perform a specific task. This is called a *dependency*. Dependencies are other pieces of code that a given software needs to run. For example, `samtools` needs `htslib` to run. This is important because if you install `samtools` on your computer, you need to make sure that `htslib` is also installed. This can get complicated because `htslib` might need `zlib` to run, and `zlib` might need `libpng` to run, and so on. This is why software management is important.
 
 These dependencies also need to be in a location that is findable by the main program. Typically, there are a few *environement variables* that tell the computer where to look for programs and their dependencies. One of these, on Unix systems, is `$PATH`.
 
-> Type the following intouy your terminal:
+> Type the following into your terminal:
 
 ```bash
 
@@ -107,7 +100,7 @@ Similarly, when you install software, there are other directories that the compu
 
 Ok, well why does any of this matter when we want to install software?
 
-# File systems and permissions
+## File systems and permissions
 
 We showed you this the other day:
 
@@ -158,11 +151,11 @@ Instead, we'll talk about two ways we can make software installation easier:
 1. Containers
 2. Environments
 
-# Containers
+## Containers
 
 Containers are a way to package up software and all of its dependencies into a single file. This file can then be run on any computer that has the software that can run the container. This is a way to get around the permissions issue because the container is run in a way that doesn't require write permissions to the root directory. There are a few different types of containers, but the two most popular are Docker and Singularity. Docker is the most popular, but Singularity is used on HPC systems (clusters) because it's designed to be run on systems where the user doesn't have write permissions to the root directory.
 
-## Singularity
+### Singularity
 
 Singularity images are typically stored as `.sif` files. These files can be run on any computer that has Singularity installed. Singularity is installed on the Cannon cluster, so we can use it to run our software. We can also use it to build our own containers, but we won't be doing that today.
 
@@ -232,7 +225,7 @@ exit
 
 This will take you back to the normal shell.
 
-## BONUS: Converting Docker images to Singularity images
+### BONUS: Converting Docker images to Singularity images
 
 Docker is the most popular container system, and there are many more Docker images available than Singularity images. However, Docker images cannot be run on the Cannon cluster. But we can convert Docker images to Singularity images. This is a bit more complicated than just running a Singularity image, but it's not too difficult.
 
@@ -243,17 +236,17 @@ Docker is the most popular container system, and there are many more Docker imag
 
 Where can you find docker containers? Try searching quay.io; the biocontainers organization keeps many tools up to date there. For singularity containers, the galaxy project has an FTP server with many containers and can be found here: https://depot.galaxyproject.org/singularity/
 
-# Environments
+## Environments
 
 While containers create a single file that contains an image of an operating system where the program you want to run is already installed, software environments essentially set-up folders on your computer and update your PATH variables so that you can run the software you want to run. This is a bit more complicated than running a container, but it's also more flexible. For example, you can have multiple environments on your computer, and you can switch between them. This is useful if you're working on multiple projects that require different versions of the same software. It's also useful if you're working on a project that requires a lot of software, because you can install all of the software you need in one environment and then switch to that environment when you want to work on that project.
 
-# conda and mamba
+## conda and mamba
 
 `conda` is a package manager that is used to install software environments. It is the most popular package manager for Python, but it can also be used to install software written in other languages. `mamba` is a faster version of `conda` that is also compatible with `conda` commands. We'll be using `mamba` today.
 
 `conda` and `mamba` are available on the Cannon cluster, however we still recommend installing them manually in a folder you have full control over (e.g. your home directory or your lab user directory). 
 
-## A note on terminology
+### A note on terminology
 
 The term `conda` itself is used to refer to both the command line program for installing software and managing environments, and the software repository. The repository hosts software on various *channels*, such as `conda-forge`, which  contains a lot of general purpose software, and `bioconda`, which contains a lot of bioinformatics software.
 
@@ -313,7 +306,7 @@ The `(base)` tells you that you're in the `base` environment. This is the defaul
 
 NOTE: It is best practice to never install any software into the `base` environment. Instead, you should create a new environment for each project you work on, which we'll cover below.
 
-## bioconda and setting up your channels
+### bioconda and setting up your channels
 
 [bioconda :octicons-link-external-24:](https://bioconda.github.io/){:target="_blank"} is a *channel* on the `conda` repository that contains a lot of bioinformatics software. It, along with the `conda-forge` channel, are likely to be the channels you'll use almost exclusively.
 
@@ -334,7 +327,7 @@ conda config --set channel_priority strict
 
 This will add the `bioconda` and `conda-forge` channels to your conda configuration. This means that when you install software with `mamba`, it will look in these channels for the software you want to install. In most cases, you can also explicitly define the channel when you install software, however this is configuration is helpful for dependencies.
 
-## Creating an environment
+### Creating an environment
 
 Let's get back to our goal for this workshop, which is to re-analyze some data in a paper ([Favate et al. 2022 :octicons-link-external-24:](https://doi.org/10.7554/eLife.81979){:target="_blank"} ). 
 
@@ -384,7 +377,7 @@ mamba env list
 
 This just shows you a list of all the `mamba` environments you've created. You should see *cutadpt-env* in the list now.
 
-## Activating environments
+### Activating environments
 
 You'll notice that, even though we've created the environment, our command prompt still says `(base)`:
 
@@ -411,7 +404,7 @@ You should see your command prompt change to show that you're in the `cutadpt-en
 
 This means that any software you install will be installed into the `cutadpt-env` environment, and any software you run will be run from the `cutadpt-env` environment.
 
-## Installing software into environments
+### Installing software into environments
 
 Ok, now we're in the `cutadpt-env` environment! 
 
@@ -450,7 +443,7 @@ cutadapt -h
 
 Finally! We should see the help menu for `cutadapt`. This means that `cutadapt` is installed in the `cutadpt-env` environment and we can run it from the environment.
 
-## Deactivating environments
+### Deactivating environments
 
 If you want to leave an environment, perhaps to switch to another one, you can use the `mamba deactivate` command.
 
@@ -470,7 +463,7 @@ You should see your command prompt change to show that you're in the `base` envi
 
 This means that any software you install will be installed into the `base` environment (**don't do this**), and any software you run will be run from the `base` environment. Any software that you had installed in your `cutadpt-env` environment will not be available from the `base` environment.
 
-# Running cutadapt
+## Running cutadapt
 
 Now that we have `cutadapt` installed in our `cutadpt-env` environment, we can use it to remove the adapters from the raw reads of our project data. Since we're working with a lot of data, we'll want to use the cluster to run `cutadapt`. We'll cover more about the cluster on Day 4, but for today, we'll just set you up with an **interactive session** on the cluster. We'll also start a **screen** session so that you can run `cutadapt` in the background and then return to your login node or disconnect from the cluster without stopping the program.
 
@@ -611,11 +604,11 @@ screen -r cutadapt-screen
 
 This will reattach the screen and show you the prompt for the screen session. You can then check on the progress of the `cutadapt` program. If it is still running, you can detach the screen again and return to the login node. Otherwise, you can start the next `cutadapt` command.
 
-# Software environments and reproducibility
+## Software environments and reproducibility
 
 It is already expected that researchers should share the underlying data and scripts for their analyses. One major advantage of software environments (and containers) is that they allow researchers to also share the exact software they used in their analysis. This is important because different versions of software can produce different results, and different software can produce different results. This is especially important in bioinformatics, where the software is often under active development and new versions are released frequently.
 
-## Exporting environments
+### Exporting environments
 
 Let's say that we want to share the software environment we used for our `cutadapt` analysis. We can do this with `mamba` by exporting the environment to a file.
 
@@ -663,7 +656,7 @@ cat software/cutadpt-env.yml
 
 Now, you can hand off this file to someone else, and they can use it to create the same environment on their computer.
 
-## Importing environments
+### Importing environments
 
 Let's say that someone else has given you a file that contains an environment. You can use this file to create the same environment on your computer. For instance, we've provided a file called `env.yml` that contains all the software you'll need to re-create the analyses in Favate et al. 2022.
 
@@ -753,21 +746,21 @@ Once the `cutadapt` jobs are done, you can exit the interacitve cluster session 
 
 Once you're sure you're done with the screen sessions, you can stop them by typing `exit` from within the screen or `screen -X -S <screen name> quit`.
 
-# conda/mamba BONUS material
+## conda/mamba BONUS material
 
-## BONUS: Installing specific versions of software
+### BONUS: Installing specific versions of software
 
 You may have noticed that `mamba` installed the latest version of `cutadapt`. This is usually what you want, but sometimes you may want to install a specific version of a program. For example, if you're working on a project that was written for an older version of a program, you may want to install that specific version. You can do this with `mamba` by specifying the version of the program you want to install.
 
 To do this, you would use the syntax `mamba install <program name>=<version number>`. For example, if you wanted to install version 1.2.3 of a program called `example`, you would run `mamba install example=1.2.3`.
 
-## BONUS: Installing multiple programs at once
+### BONUS: Installing multiple programs at once
 
 You may have also noticed that `mamba` installed a lot of other software along with `cutadapt`. This is because `cutadapt` has a lot of dependencies. This is usually what you want, but sometimes you may want to install multiple programs at once. You can do this with `mamba` by specifying the names of the programs you want to install.
 
 To do this, you would use the syntax `mamba install <program1> <program2> <program3>`. For example, if you wanted to install `example1`, `example2`, and `example3`, you would run `mamba install example1 example2 example3`.
 
-## BONUS: Installing software from a specific channel
+### BONUS: Installing software from a specific channel
 
 You may have also noticed that `mamba` installed the software from the `bioconda` channel. This is usually what you want, but sometimes you may want to install software from a different channel. You can do this with `mamba` by specifying the channel you want to install the software from.
 
@@ -775,33 +768,48 @@ To do this, you would use the syntax `mamba install -c <channel name> <program n
 
 You can search for software from any channel from [Anaconda.org :octicons-link-external-24:](https://anaconda.org/){:target="_blank"}.
 
-## BONUS: Installing software as you create an environment
+### BONUS: Installing software as you create an environment
 
 You may have also noticed that we created the `cutadpt-env` environment and then installed `cutadapt` into it. This is usually what you want, but sometimes you may want to install software into an environment as you create it. You can do this with `mamba` by specifying the names of the programs you want to install when you create the environment.
 
 To do this, you would use the syntax `mamba create -n <environment name> <program1> <program2> <program3>`. For example, if you wanted to create an environment called `example-env` and install `example1`, `example2`, and `example3` into it, you would run `mamba create -n example-env example1 example2 example3`.
 
-## BONUS: Searching for packages from the command line
+### BONUS: Searching for packages from the command line
 
 You can also search for software from the command line with `mamba`, though this tends to take longer than just searching from the web. 
 
 The syntax for this is `mamba search <search term>`. For example, if you wanted to search for all the software that is available on the `bioconda` channel, you would run `mamba search -c bioconda`.
 
-## BONUS: Deleting environments
+### BONUS: Deleting environments
 
 If you want to delete an environment, you can use the `mamba remove -n <environment name> --all` command. This can sometimes take a lot of time. It is also possible to simply remove the folder where the environment is stored (`miniforge3/envs/<ENV NAME>/`).
 
 
-# Other package managers and software repositories
+## Other package managers and software repositories
 
 We've talked exclusively about `conda` up until this point because it is the most popular package manager for Python and bioinformatics software. However, there are other package managers that are used for different types of software. For example, `pip` is a package manager that is used to install Python packages, and `apt` is a package manager that is used to install software on Ubuntu systems. `brew` is a package manager that is used to install software on macOS systems. And CRAN is a software repository for R.
 
-## BONUS: Installing software with pip
+### BONUS: Installing software with pip
 
 `pip` is a package manager that is used to install Python packages. It is installed with Python, so you don't need to install it separately. You can use `pip` to install Python packages into an environment, just like you can use `mamba` to install software into an environment. We usually recommend using `mamba` to install Python packages, but sometimes you may need to use `pip` instead.
 
 The basic syntax to install a Python package with `pip` is `pip install <package name>`. For example, if you wanted to install a package called `example`, you would run `pip install example`.
 
-## BONUS: Installing R packages with CRAN
+### BONUS: Installing R packages with CRAN
 
 CRAN is a package manager for R. It is used to install R packages. CRAN is more self-contained than `conda` and `pip` in that you only install packages from within R. You can use the `install.packages` function to install packages from CRAN. For example, if you wanted to install a package called `example`, you would run `install.packages("example")`.
+
+---
+
+<!-- --------------------------------- -->
+<!-- Page specfic CSS -->
+
+<style type="text/css">
+    pre { overflow-x: scroll }
+    pre code { white-space: pre; }
+    /* This makes the output blocks scroll horizontally in HTML renders */
+
+    .md-sidebar--secondary { order: 0; }
+    .md-sidebar--primary { display: none; }
+    /* This hides the Navigation sidebar and moves the TOC sidebar to the left in HTML renders */
+</style>

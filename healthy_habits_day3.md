@@ -1,6 +1,7 @@
 ---
-title: "Harvard Informatics Healthy Habits for Data Science Workshop"
+title: "[Workshop] Healthy habits for data science, day 3"
 subtitle: "Day 3: Version Control with git and GitHub"
+description: "Maintaining project history with version control using git ang github."
 date: "March 21, 2024"
 author: "Lei Ma"
 output: 
@@ -10,26 +11,19 @@ editor_options:
   chunk_output_type: inline
 ---
 
-<style type="text/css">
-    pre { overflow-x: scroll }
-    pre code { white-space: pre; }
-    /* This makes the output blocks scroll horizontally in HTML renders */
-
-    .md-sidebar--secondary { order: 0; }
-    .md-sidebar--primary { display: none; }
-</style>
+# Healthy habits for data science, day 3
 
 ## Introductions
 
 Welcome to day 3 of Healthy Habits. Today we're going to learn about version control using git/GitHub. While the central concept of git and its use is designed to integrate smoothly into your workflow, it can be unintuitive at first. To start off with let's do introductions and this time let's say your name and say where you primarily get your scripts/code from. For example, I write a lot of my own scripts but sometimes I follow a tutorial online and copy-paste it from there. 
 
-# Why version control is important
+## Why version control is important
 
 Regardless of where your code comes from, usually throughout a project there is an iterative process of writing, testing, and changing your code until you get to the final version that you use in your publication. This may consist of testing out multiple versions of the same code at a time, or maybe one set of scripts for analysis A and another set for analysis B and there's some overlap between the two... Anyway, it can get messy! Version control is a way to manage this process so that you never lose important work and can clearly distinguish between different version of your code.
 
 Using git and GitHub for version control also facilitate working with others, because you can easily share your code on GitHub with others. GitHub also acts as a backup for your code, so you can always start where you left off, even if your local copy gets lost or messed up.
 
-# Basics of git
+## Basics of git
 
 <div align="center">
     <figure>
@@ -57,7 +51,7 @@ To transfer code between your local and remote repositories, you use "push" and 
 
 When you want to collaborate with others, you can "fork" their repository, which makes a copy of their repo on your own GitHub account. You can then "clone" this repo to your local machine, make changes, push those changes to the remote, and then make a "pull request" to merge your changes to the original repository. 
 
-## Side note: A potential use-case for git/GitHub in your lab
+### Side note: A potential use-case for git/GitHub in your lab
 
 <div align="center">
     <figure>
@@ -74,7 +68,7 @@ Let's practice all these concepts together on a demo repo.
 
 > **ACTIVITY: [GitHub demo repo :octicons-link-external-24:](https://github.com/harvardinformatics/github-intro){:target="_blank"}**
 
-## Vocab part 1
+### Vocab part 1
 
 Here are some terms that are useful to know when working with git:
 
@@ -93,7 +87,7 @@ Here are some terms that are useful to know when working with git:
 | status         | check the status of your git repo                        |
 
 
-# .gitignore, pushing to GitHub
+## .gitignore, pushing to GitHub
 
 Now that we've practiced a bit with a demo repo, let's make our project directory on the cluster into a git repo and push it to GitHub. What defines a git repo is a hidden folder called '.git' that contains all the information about the history of your project. When you make commits, the .git folder is updated with the new information. That's how different versions of your project can be store in a space-efficient way. To make a git repo, run 'git init' in the project directory. Use git status to see what files can be added to the staging area.
 
@@ -178,7 +172,7 @@ branch 'main' set up to track 'origin/main'.
 
 If you want another way to add a remote from an existing repo, you can follow the instructions on the [GitHub help pages :octicons-link-external-24:](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git){:target="_blank"}. 
 
-# Navigating your git history
+## Navigating your git history
 
 ```mermaid
 gitGraph
@@ -228,7 +222,7 @@ Below are some slides that illustrate how HEAD moves around as you make commits 
         </figure>
     </div>
 
-## Checkout
+### Checkout
 
 <div align="center">
     <figure>
@@ -241,7 +235,7 @@ When you use the `git checkout` command, you can move the HEAD to a different co
 
 `git checkout` can also be used to create and move HEAD to a new/existing branch, retrieve a specific file from a specific commit, or to discard changes in your working directory. These may seem like disparate uses, but they all involve moving the HEAD to different parts of your git history. 
 
-## Revert
+### Revert
 
 <div align="center">
     <figure>
@@ -281,7 +275,7 @@ Three
 4
 ```
 
-## Reset
+### Reset
 
 <div align="center">
     <figure>
@@ -301,7 +295,7 @@ When you do a `git reset --hard`, you will need to force push `git push --force`
 
 `git reset` is also helpful if you want to unstage a file that you've added to the staging area. You can use `git reset <filename>` to unstage a file. (You can also do this with `git restore --stage <filename>`, which is apparently the safer way to do it.)
 
-## Vocab part 2
+### Vocab part 2
 
 Here are some of the more advanced git commands/terms relevant to this section:
 
@@ -316,7 +310,7 @@ Here are some of the more advanced git commands/terms relevant to this section:
 | reflog   | See all git command history that made changes                  |
 
 
-# Good git practice
+## Good git practice
 
 Project organization contributes to ease of use with git. If your data is all in one folder, it's easy to add that entire folder to your .gitignore file. Likewise, if your scripts are all in one place, it's easy to add them all to the staging area and commit changes. As you get new data or try new analyses, try to keep a consistent organizational strucutre. This includes having good naming conventions for your files and folders, having a top level readme or folder-specific readme that makes clear what is what. On the git side, make sure you have descriptive commit messages (if your message is too long, you can use `git commit` without the `-m` flag to open a text editor to write your message) so you can always make a good guess at what commit has the changes your interested in. 
 
@@ -333,9 +327,9 @@ Use `git log` to see the history of your project. Use the arrow keys to navigate
 [Oh shit git :octicons-link-external-24:](https://ohshitgit.com/){:target="_blank"} is a good quick reference for panic-finding a git solution to common situations.
 
 
-## Undoing difficult git mistakes
+### Undoing difficult git mistakes
 
-### git filter-repo
+#### git filter-repo
 
 If you accidentally commit a large file to your local git repo and try to push it to your remote, you will find that you are not allowed to push. You then remove the file from your working directory and make a new commit documenting the deletion of the file, but you're still not allowed to push? Why? This is because your staging area (aka index, aka .git folder) still has a record of the time you commited that file. It's very hard to scrub your git history. Similarly, if you commit a password or access token, that commit will always display your sensitive information even if you overwrite the file in later commits. So how do we fix this?
 
@@ -363,12 +357,12 @@ git filter-repo --invert-paths --path '.DS_Store' --use-base-name
 
 For more examples, see the [documentation :octicons-link-external-24:](https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html){:target="_blank"}.
 
-### Starting over from remote
+#### Starting over from remote
 
 If you've made a mess of your local git repo and you just want to start over from the last time you pushed to the remote, you can use `git reset --hard origin/main`. Origin is the name of the remote and main is the name of the branch on the remote you're resetting to. This will change your working directory and staging area to match the remote's. 
 
 
-## Git takeaways
+### Git takeaways
 
 1. Commits are NOT automatic. You have to tell git when and what to commit every time. So do it frequently, or you won't be able to go back to a version that you didn't commit. 
 2. Always pull to get the latest changes from the remote before you start working on your local version. Again, git does NOT operate automatically at all. Everything is manual. 
@@ -377,5 +371,18 @@ If you've made a mess of your local git repo and you just want to start over fro
 5. Do your development on a separate branch
 
 
-# Group discussion and questions
+## Group discussion and questions
 
+---
+
+<!-- --------------------------------- -->
+<!-- Page specfic CSS -->
+
+<style type="text/css">
+    pre { overflow-x: scroll }
+    pre code { white-space: pre; }
+    /* This makes the output blocks scroll horizontally in HTML renders */
+
+    .md-sidebar--secondary { order: 0; }
+    .md-sidebar--primary { display: none; }
+</style>

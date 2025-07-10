@@ -1,6 +1,7 @@
 ---
-title: "Harvard Informatics Healthy Habits for Data Science Workshop"
+title: "[Workshop] Healthy habits for data science, day 4"
 subtitle: "Day 4: Running Scripts on the Cluster"
+description: "Reproducible projects with notebooks (jupyter, RMarkdown), and scaling analyses by submitting them to the cluster."
 date: "March 27, 2024"
 author: "Adam Freedman"
 output: 
@@ -10,21 +11,14 @@ editor_options:
   chunk_output_type: inline
 ---
 
-<style type="text/css">
-    pre { overflow-x: scroll }
-    pre code { white-space: pre; }
-    /* This makes the output blocks scroll horizontally in HTML renders */
+# Healthy habits for data science, day 4
 
-    .md-sidebar--secondary { order: 0; }
-    .md-sidebar--primary { display: none; }
-    /* This hides the Navigation sidebar and moves the TOC sidebar to the left in HTML renders */
-</style>
-
-## Introductions
+## Introduction
 
 Good morning and welcome to day 4 of Healthy Habits. Today we're going to talk about how to use scripts and loops to be able to "scale up" analysis, how to deploy these scaled-up analyses on the Cannon cluster, and how to track work with "notebooks". In previous days of the workshop, you've submitted scripts to generate data necessary to produce Figure 1 from our example paper on patterns of expression parallelism of gene expression in *E. coli*. But today we will take a finer-grained look at SLURM scripts, and explain best practices for quickly and efficiently performing analysis on large numbers of files. In short, we will be explaining, with examples, practical "how tos" for doing with your data, what you've been doing with our example data.
 
-## Preliminaries ... workshop data
+## Workshop data
+
 In case you haven't already done this, please go to the directory you created for running data processing and analysis on the Cannon cluster and do the following:
 
 ```bash
@@ -32,6 +26,7 @@ cp -r /n/holylfs05/LABS/informatics/Everyone/workshop-data/healthy-habits-2024/d
 ```
 
 ## Running loops in scripts
+
 While in principle, one could manually perform every execution of every step of a pipeline manually--e.g. trimming adaptors from a particular fastq file associated with a particular sample--on the command line, this immediately generates obstacles to efficient analysis, because:
 * Many analyses can take hours (and some take days)
   * You don't want to do this in an interactive sessions
@@ -50,6 +45,7 @@ exit the loop after I'm done with the last item
 It is worth noting that the list of items need not just be files. They could also be a series of numerical values, if for example you are conducting a simulation and those numbers are values for a specific parameter you are varying. They can also be sub-strings that vary across a bunch of files that only differ by that substring. In general, the "items" can be anything that is required to compose a correct command line with the analysis tool/script being deployed.
 
 ### Loops and variable assignment in bash: a brief review
+
 The above example of a loop is pseudocode ... but what you need for actual implementation is the real syntax in *bash*. For example:
 
 ```bash
@@ -80,6 +76,7 @@ done
 In this case, we are using unix search functionality to list everything that ends with "fq" using the wildcard "*", which means "anything". There will be cases where you need to create an array not simply using a numerical index. We will discuss ways to do this in a little bit when we discuss SLURM job arrays.
 
 ## Cluster architecture as applies to SLURM
+
 SLURM is the scheduler that manages the compute job submissions on Harvard's Cannon cluster. Job submissions invoke the sbatch command:
 ```bash
 sbatch myscript.sh
@@ -87,6 +84,7 @@ sbatch myscript.sh
 The SLURM script identifies which specific resources are being requested, and what resources you need to request will depend in part on the nature of the software or code that the job going to run, potentially the size of the data set that the code is going to process, and command line arguments for the code that may affect run time and memory requirements. With this in mind it is important to review some basic high-performance computing (HPC) cluster vocabulary and, specifically, the architecture of Cannon, so that we can relate that architecture to how we request resources.
 
 ## Nodes, CPUs, and cores
+
 What's in a node? CPUs and cores!
 
 <div align="center">
@@ -141,7 +139,9 @@ bwa mem /BWAMEM/INDEX/PREFIX input_reads_R1.fq input_reads_R2.fq -t $SLURM_CPUS_
 There are a few important additions to notice in the multi-threaded case. First, we specify the number of tasks. The *bwa-mem* job is considered a task ... and internally, it allocates subsets of reads to individual cores. The *-c* now specifies 12 cores. Because bwa-mem does not run OpenMPI under the hood, it is not capable of running across multiple nodes ... so we require that all requested cores all are on one node. Finally, we can use a convenient SLURM trick, which is to use a SLURM variable $SLURM_CPUS_PER_TASK which equal what is provided to *-c*. This avoids hard-coding errors, i.e. you want to increase the number of cores, so you change *-c* but you forget to change a hard-coded value for *-t* in the command line. SLURM reserves the core resources requested by you--and penalizes your fair share for them--but you only end up using what you provide on the command line.
 
 ## Data analysis
+
 ### build kallisto indices with SLURM jobs in a loop
+
 We've thus far learned a little bit about executing loops from the comman line in the shell, and the setup for a SLURM sbatch submission. Let's try putting those two pieces together. To run expression quantification with *kallisto*, we need to kallisto genome indices by running the *index* module for *kallisto*. While, for small bacterial genomes, this could easily and quickly be run on an interactive node, we will practice setting this up in an actual job. As you may recall, there are multiple *E. coli* genomes that have to be indexed, one for each lineage, so that when we perform quantification on a particular sample, we are doing so with the corresponding index of the correct genome. The "all at once" loop structure would be like this
 
 ```bash
@@ -179,6 +179,7 @@ done
 ```
 
 ### Introducing ... job arrays!
+
 With a limited number of input files, or variations on a command line argument you are permuting to investigate its effects on output, it may be straightforward to feed input arguments in a loop (as above). As the number of files or inputs increases, this becomes a less ideal way of doing things. A (frequently better) alternative is to submit a set of related jobs that use the same general command structure, as a job array. In a SLURM job array there is a parent job (with its own id) and a series of associated child jobs subsumed by it: one for each command line execution with the specific inputs you have provided. If you check the job status of an array with *sacct*, it will return something like this:
 
 |JobID | JobName | Partition | Account | AllocCPUS | State |ExitCode| 
@@ -225,6 +226,7 @@ In the above script, the log files contain two SLURM variables. We have already 
 
 
 #### 2nd way: combining bash arrays with SLURM job arrays
+
 In many cases, you may want to iterate over a set of files that don't have a conveniently embedded numeric string that you can equate with $SLURM_ARRAY_TASK_ID. In cases such as these, you want to:
 * Create a bash array for the files, then
 use the $SLURM_ARRAY_TASK_ID as an index to grab a specific value in the array.
@@ -278,6 +280,7 @@ An important thing to note with SLURM job arrays is that the memory and time set
 **We are not going to submit this array job as we've already created the kallisto indices.**
 
 #### kallisto quant job array
+
 Now, we will use a pre-existing sbatch script so that we can run a kallisto quant job array to get expression estimates for our samples. At this point, your directory structure within your **day4/** directory should look like this
 
 ```bash
@@ -350,6 +353,7 @@ sbatch kallisto_quant_array.sh
 It has to be run from there so that relative paths to the kallisto indices and the fastq files are correct: these paths are relative to where the sbatch command is executed ... NOT where the actual script resides. Also, because the fastq files are read in as an array from their location, with sample names parsed from the files, an necessary directories created accordingly, one does not have to supply any command line arguments.
 
 ## The job efficency interlude ...
+
 How long it takes for your cluster job to get running depends upon your position in the job queue. That position is determined by your "fairshare" and more specifically, that of your lab. If you and your lab members launch a ton of large-resource requiring jobs (lots of memory, lots of nodes), it will reduce your fairshare and likely increase your wait time befor jobs switch from *PENDING* to *RUNNING* status. Thus .. it is worth giving some thought to how you choose resources. For more about how fairshare is calculated, check out [FASRC Fairshare and Job Accounting :octicons-link-external-24:](https://docs.rc.fas.harvard.edu/kb/fairshare/){:target="_blank"}. There are a few key things to consider when requesting resources in a SLURM job:
 
 * Your requested number of nodes,cores and memory are held for you during the entire length of the job, **whether your job uses them or not!** The reduction in fairshare will get determined by the resources *during the time the job was running.
@@ -425,3 +429,18 @@ Just a reminder regarding what we requested per array job:
 ```
 
 Jobs that requested 8 hours per array execution took a few seconds ... and certainly DID NOT use 24Gb! Overall ... it seems pretty clear that we could request far less memory, fewer cores, and far less time to run the jobs!
+
+---
+
+<!-- --------------------------------- -->
+<!-- Page specfic CSS -->
+
+<style type="text/css">
+    pre { overflow-x: scroll }
+    pre code { white-space: pre; }
+    /* This makes the output blocks scroll horizontally in HTML renders */
+
+    .md-sidebar--secondary { order: 0; }
+    .md-sidebar--primary { display: none; }
+    /* This hides the Navigation sidebar and moves the TOC sidebar to the left in HTML renders */
+</style>

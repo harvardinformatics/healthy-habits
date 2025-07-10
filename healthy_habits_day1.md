@@ -1,6 +1,7 @@
 ---
-title: "Harvard Informatics Healthy Habits for Data Science Workshop"
+title: "[Workshop] Healthy habits for data science, day 1"
 subtitle: "Day 1: Reproducibility and Project Management"
+description: "An introduction to the principles and best practices for file management for reproducible projects"
 date: "March 13, 2024"
 author: "Lei Ma"
 output: 
@@ -10,15 +11,7 @@ editor_options:
   chunk_output_type: inline
 ---
 
-<style type="text/css">
-    pre { overflow-x: scroll }
-    pre code { white-space: pre; }
-    /* This makes the output blocks scroll horizontally in HTML renders */
-
-    .md-sidebar--secondary { order: 0; }
-    .md-sidebar--primary { display: none; }
-    /* This hides the Navigation sidebar and moves the TOC sidebar to the left in HTML renders */
-</style>
+# Healthy habits for data science, day 1
 
 ## Introductions
 
@@ -26,15 +19,15 @@ Hi everyone! As you're coming in please fill out the attendance trackers. I'm al
 
 (After everyone's here) Let's go around and do some introductions. Just say your name, your lab/department, and your favorite organism.
 
-# Overview of the workshop
+## Overview of the workshop
 
-## What is project management and why are we doing this?
+### What is project management and why are we doing this?
 
 Welcome to the first day of our "Healthy Habits for Data Science" workshop! We're doing this workshop because we've realized that there are a lot of headaches that can be avoided by understanding and implementing some specific pratices in your bioinformatics project, and really any data project in general. The concepts and skills you'll learn in this course will help you track your project history, collaborate with others, publish more, and fulfill requirements. The course is structured around a paper that we'll be reproducing in part. We'll use that activity to introduce the concepts we think are the most important for when you do your own project. You don't have to know anything about the biological background of the paper or have familiarity with the specific analysis they used as we'll provide the scripts and the data. 
 
 Today we'll be looking at the paper and its associated GitHub repository and discussing the concepts of project management, FAIR data, data management, and reproducibility. For hands on work, we'll set up a project directory on the cluster and learn how to transfer files between the cluster and your personal computer. 
 
-# Open science
+## Open science
 
 A lot of this workshop would not be possible without the concept of open science and many of the healthy habits are also part of the open science movement. Open Science encompasses a lot of topics, but for this workshop the most relevant is open data and open source. And for us teachers, we're also interested in open educational resources, because as the informatics group, we generate workshop materials that are available to the public and we want to connect students with other resources that are also freely available. 
 
@@ -46,7 +39,7 @@ Why should we care open science?
 
 Note, that it's not just about publishing your journal article in an open access journal. Your research products encompass preprints, conference presentations, posters, data, figures, code, and protocols. 
 
-## FAIR principles
+### FAIR principles
 
 <div align="center">
     <figure>
@@ -71,7 +64,7 @@ What does interoperability mean?
     * Use open file formats like .csv, .tsv, .md, .txt, .tiff, pdf, .mp4, etc.
     * If unavoidable, convert proprietary file formats to open file formats, or document the software needed to use the file format
 
-## The data management life cycle
+### The data management life cycle
 
 <div align="center">
     <figure>
@@ -111,7 +104,7 @@ If you want to learn more about the general principles of data management, the H
 
 > **DISCUSSION: Have you ever heard of or seen your lab's data management plan? What are some things it covers?**
 
-## Open science in practice 
+### Open science in practice 
 
 Keeping all these in mind, let's take a look at how open science is reflected in an actual journal article. 
 
@@ -145,7 +138,8 @@ Go to the github page for the paper and find the link to the data, then click "S
 FAIR principles apply to both the data and the metadata, so  I would say that the data is findable, but lacks in the accessibility department. And, if we look at the copyright license on the paper, it's distributed under a CC-BY license, which is a very open license. So the data is reusable. It's interoperable because it's in a standard and non-proprietory file format.
 
 
-# Overview of paper
+## Overview of paper
+
 The paper we're reproducing is ["The landscape of transcriptional and translational changes over 22 years of bacterial adaptation" by Favate et al. (2022)](https://doi.org/10.7554/eLife.81979). The basic premise is that 12 lines of E. coli have been evolving in the lab for 22 years and the authors are interested in finding out whether transcriptional changes have happened over that time period compared to the ancestor strain. Transcription is the creation of mRNA from DNA, so the genetic changes of these lines are well characterized but the authors are curious of the actual expression of these genes are different. 
 
 All these lines have been frozen in glycerol stock so that they can preserve the exact genetic makeup of each time point in this long term evolution experiment and resuscitate the cells at any time. The authors revive the lines and sequence their RNA to assess transcriptional activity. They also did something called ribo-seq to assess translation, but we're not going to be analyzing that data. We'll be recreating a few panels from figure one of the paper. 
@@ -187,9 +181,9 @@ We'll be coming back to this workflow in a minute, but first, let's talk about w
 
 > **ACTIVITY: ask students to get up and draw an example workflow from their lab**
 
-# Project management 
+## Project management 
 
-## Project directory and file organization
+### Project directory and file organization
 
 The reason we talk about workflow first is because it feeds directly into the organization of the project. The healthy habit that inspired the idea of this workshop is the idea of a project directory. On computers, files are organized into folders or directories and this is both for the user's benefit as well as for the computer to know where things are. The minimum amount of organizing one can do is put all the files related to a project into a single directory. 
 
@@ -231,7 +225,7 @@ Other tips for good directory organization include:
 
 I've made a folder with a bunch of dummy files. Let's see if we can go through and reorganize it based on what we've learned today. Call out things you see that may be problematic. Feel free to be as pedantic or as critical as you want to be. (This folder activity inspired by the excelent [R for Data Science :octicons-link-external-24:](https://r4ds.hadley.nz/){:target="_blank"} book chapter 6)
 
-## Project directories on the Cluster
+### Project directories on the Cluster
 
 The next question is where should this project directory itself be located? If it's a small analysis, on your personal computer is probably fine. But we're bioinformaticians and we work with data that often needs specialized software or a lot of computational power, so we often work on a cluster. Hopefully, everyone here has used the cluster at least a little bit and logged on. The FASRC cluster is called Cannon and it's a combination of high performance computing nodes with large storage capacity. 
 
@@ -254,11 +248,11 @@ Alright, let's now go to the cluster and make a new project directory in scratch
 
 > **ACTIVITY: Explain the contents of each file**
 
-## Permissions on the cluster 
+### Permissions on the cluster 
 
 Every file and folder on the cluster has a set of permissions that determine who can read, write, or execute the file. Execute in this context means run the code that is on that file. You can look at the file permissions by typing `ls -l` in the terminal. The first column of the output will show you the permissions. The first character is the file type (d for directory, - for file, l for link, etc.) and the next 9 characters are the permissions for the owner, the group, and everyone else. r means read, w means write, and x means execute. By default the files you create can only be edited by you, but you can change the permissions of files you own with the `chmod` command. 
 
-## Transferring files
+### Transferring files
 
 Now that we have our project directory set up, let's go over some ways we can transfer files between local computers and the cluster. The first way is to use a non-command line application to transfer files. For a GUI/app-based solution, there's FileZilla. It's a File Transfer Protocol (FTP) application that can connect to remote servers. You can follow the [steps on the RC documentation site to learn how to use FileZilla :octicons-link-external-24:](https://docs.rc.fas.harvard.edu/kb/sftp-file-transfer/).{:target="_blank"}
 
@@ -268,7 +262,7 @@ Let's put that into action and have everyone choose a method they prefer to tran
 
 > **ACTIVITY: Have students make a readme file for the raw data on their personal computer and then sync it to the cluster. Then have them download the files to their personal computer for backup**
 
-## Making backups, what to save and how?
+### Making backups, what to save and how?
 
 Our last topic for today is how to make backups and what to save. We kind of touched on this during the data management life cycle part, and now we're going to be more specific. We all know file backups are important, but it's not always clear what needs to be backed up and what doesn't. The general rule is that if you can regenerate the file easily, you don't need to back it up. For example, if you have a script that generates a figure, you don't need to back up the figure, you just need to back up the script. If you have a raw data file that you've processed into a different file, you don't need to back up the processed file, you just need to back up the raw data file and the script. Of course, if it look a really long time to generate the processed file, it might be worth backing up. There's a lot of options for backing things up, depending on file type, what stage the research is in, and the sensitivity of the file. 
 
@@ -278,7 +272,7 @@ More locally, you also have options. If you want the lab to ultimately own your 
 
 Backing up code and other small files is fairly straightforward. One option is to set up rsync between your computer and the cluster to always keep a mirror of your project's "scripts" folder. That way you can write your code on your computer and rsync it to the cluster to run. However, one of the problems with this is that there's not record of past versions of your code. And that can be important if you're experimenting or want to do similar analysis with slight tweaks and you want to go back to a version that worked. This is where git and GitHub come in. We're going to do a full day on learning to use git and GitHub to do version control on day 3, so stay tuned. 
 
-# Structure of the rest of the workshop
+## Structure of the rest of the workshop
 
 Here's a summary of the topics we'll be covering in the next few days. The next day we'll be having a bonus day where we'll be talking about how to optimize and customize your coding/working environment. These topics will help streamline some frustrating aspects of working with code or on the cluster. Bonus days are more informal and probably won't last the full 3 hours. 
 
@@ -288,7 +282,7 @@ Finally, there's one more bonus day focusing on debugging and iterating on your 
 
 And don't forget we also have office hours every Wednesday from 1:30-4:00 where you can ask your questions. Or you can ask them on our slack channel. 
 
-# Group discussion and questions
+## Group discussion and questions
 
 (Alternatively, group discussion if class size is less than 10)
 
@@ -299,3 +293,18 @@ Let's wrap up with a small discussion because I'm curious about where you all ar
 > **ACTIVITY: Have students group up in groups of 2-3 and discuss. Each instructor should also sit with a group. Then get back together and chat**
 
 Time for questions. 
+
+---
+
+<!-- --------------------------------- -->
+<!-- Page specfic CSS -->
+
+<style type="text/css">
+    pre { overflow-x: scroll }
+    pre code { white-space: pre; }
+    /* This makes the output blocks scroll horizontally in HTML renders */
+
+    .md-sidebar--secondary { order: 0; }
+    .md-sidebar--primary { display: none; }
+    /* This hides the Navigation sidebar and moves the TOC sidebar to the left in HTML renders */
+</style>
